@@ -1,0 +1,24 @@
+<p>
+  <strong>Album:</strong> <%= @album.title %>
+  <br>
+  <strong>Style: </strong> <%= @album.live ? 'Live' : 'Studio' %>
+  <br>
+  <strong>Band: </strong> <%= link_to @album.band.name, band_url(@album.band) %>
+</p>
+
+<p>
+  <strong>Tracks: </strong><br>
+  <ul>
+    <% @album.tracks.each do |track| %>
+      <li><%= link_to track.name, track_url(track) %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <%= link_to "Edit Album Information", edit_album_url(@album) %>
+  <br>
+  <%= link_to "Add a Track", new_album_track_url(@album) %>
+</p>
+
+<%= link_to "Back to #{@album.band.name}", band_url(@album.band) %>

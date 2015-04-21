@@ -1,0 +1,14 @@
+<nav class="navbar navbar-default">
+  <ul class="nav nav-pills">
+    <% if current_user.nil? %>
+      <li><%= button_to 'Sign Up', new_user_url, method: :get %></li>
+      <li><%= button_to 'Log In', new_session_url, method: :get %></li>
+    <% else %>
+      <li><%= button_to 'Profile', user_url(@user), method: :get %></li>
+      <li><%= button_to 'Log Out', session_url, method: :delete %></li>
+    <% end %>
+      <li><%= button_to 'Home', home_url, method: :get %></li>
+      <li><%= button_to 'Contact', contact_url, method: :get  %></li>
+      <li><%= button_to 'About', about_url, method: :get  %></li>
+  </ul>
+</nav>

@@ -1,0 +1,19 @@
+<h1>Goals!</h1>
+
+<%= button_to "Create Goal", new_goal_url, method: :get, id: "create_goal" %>
+
+<% @goals.each do |goal| %>
+  <%= goal.body %>
+  <% if goal.user_id == current_user.id %>
+    <%= button_to "Edit", edit_goal_url(goal), id: "edit_goal_#{goal.id}", method: :get %>
+    <%= button_to "Delete", goal_url(goal), id: "delete_goal_#{goal.id}", method: :delete %>
+    <% unless goal.completed %>
+      <form class="complete" action="<%= goal_url(goal) %>" method="post">
+        <%= auth_input %>
+        <input type="hidden" name="_method" value="patch">
+        <input type="hidden" name="goal[completed]" value="true">
+        <input type="submit" id="complete_goal_<%= goal.id %>" value="Complete">
+      </form>
+    <% end %>
+  <% end %>
+<% end %>

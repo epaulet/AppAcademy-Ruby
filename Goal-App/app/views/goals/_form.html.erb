@@ -1,0 +1,10 @@
+
+<% action = creating ? goals_url : goal_url(@goal) %>
+<form class="goal" action="<%= action %>" method="post">
+  <%= auth_input %>
+  <%= render 'shared/patchy', creating: creating %>
+  <label>Goal<input id="Goal" type="text" name="goal[body]" value="<%= @goal.body %>"></label>
+  <label>Public <input type="radio" id="public" name="goal[is_private]" value="false"></label>
+  <label>Private <input type="radio" id="private" name="goal[is_private]" value="true"></label>
+  <input type="submit" value="Submit" id="make_goal">
+</form>

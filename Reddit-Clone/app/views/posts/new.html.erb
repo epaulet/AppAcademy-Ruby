@@ -1,0 +1,26 @@
+<h3>Make a new post!</h3>
+<form action="<%= posts_url %>" method="post">
+  <%= auth_input %>
+  <label for="post_title">Title</label>
+  <input id="post_title" type="text" name="post[title]" value="<%= @post.title %>"><br>
+
+  <label for="post_url">link url</label>
+  <input id="post_url" type="text" name="post[url]" value="<%= @post.url %>"><br>
+
+  <label for="post_content">Description</label><br>
+  <textarea name="post[content]" id="post_content"><%= @post.content %></textarea><br>
+  <br>
+  <input type="hidden" name="post[sub_ids][]" value="">
+
+  <p>
+  Please choose Subs under which this post will appear:<br><br>
+  <% @subs.each do |sub| %>
+    <label>
+      <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"
+        <%= @post.subs.include?(sub) ? 'checked' : '' %>>
+      <%= sub.title %>
+    </label><br/>
+  <% end %>
+  </p>
+  <input type="submit" value="Make Post">
+</form>

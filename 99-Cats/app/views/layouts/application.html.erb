@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cats99</title>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if current_user %>
+  <p><strong><%= current_user.user_name %></strong></p>
+  <p><%= button_to "Log Out", session_url, method: "delete" %></p>
+<% else %>
+  <p>
+    <% unless @hide_login_button %>
+      <%= button_to "Log In", new_session_url,  method: "get" %>
+    <% end %>
+    <% unless @hide_signup_button %>
+      <%= button_to "Sign Up", new_user_url, method: "get" %>
+    <% end %>
+  </p>
+<% end %>
+
+<% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+<% end %>
+
+<% if flash[:success] %>
+  <p><%= flash[:success] %></p>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

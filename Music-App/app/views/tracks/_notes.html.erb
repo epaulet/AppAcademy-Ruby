@@ -1,0 +1,23 @@
+<ul>
+  <% track.notes.each do |note| %>
+    <li><u>submitted by: <%= note.author.email %>
+      <% if note.author == current_user %>
+        <form action="<%= note_url(note) %>" method="post">
+          <%= request_input('delete') %>
+          <%= auth_input %>
+          <input type="submit" value="Delete Note">
+        </form>
+      <% end %>
+      </u>
+      <div style="width:450px"><%= note.content %></div>
+    </li>
+  <% end %>
+</ul>
+
+<form action='<%= notes_url %>' method='post'>
+  <%= auth_input %>
+  <input type="hidden" name="note[track_id]" value="<%= track.id %>">
+  <strong>New Note:</strong><br>
+  <textarea name="note[content]" rows="8" cols="40"></textarea><br>
+  <input type="submit" value="Submit Note">
+</form>

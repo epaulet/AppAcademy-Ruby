@@ -1,0 +1,54 @@
+<form action=<%= url %> method="post">
+  <input type="hidden"
+       name="authenticity_token"
+       value="<%= form_authenticity_token %>">
+
+  <% if @cat.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <p>
+    <label><strong>Name</strong>
+      <br>
+      <input type="text" name="cat[name]" value=<%= @cat.name %>>
+    </label>
+  </p>
+
+  <p>
+    <label><strong>Gender</strong>
+      <br>
+      <input type="radio" name="cat[gender]" id="cat_gender_male" value="M" <%= 'checked' if @cat.gender == 'M' %>>
+      <label for="cat_gender_male">Male</label>
+
+      <input type="radio" name="cat[gender]" id="cat_gender_female" value="F" <%= 'checked' if @cat.gender == 'F' %>>
+      <label for="cat_gender_female">Female</label>
+    </label>
+  </p>
+
+  <p>
+    <label for="cat_color"><strong>Color</strong></label>
+    <br>
+    <select name="cat[color]" id="cat_color">
+      <option></option>
+      <% %w(brown black white calico orange).each do |color| %>
+        <option value=<%= color %> <%= 'selected' if color == @cat.color %>><%= color.capitalize %></option>
+      <% end %>
+    </select>
+  </p>
+
+  <p>
+    <label><strong>Birth Date</strong>
+      <br>
+      <input type="date" name="cat[birth_date]" value=<%= @cat.birth_date.nil? ? 'yyyy/mm/dd' : @cat.birth_date %>>
+    </label>
+  </p>
+
+  <p>
+    <label><strong>Description</strong>
+      <br>
+      <textarea name="cat[description]" rows="10" cols = "50"><%= @cat.description %></textarea>
+    </label>
+  </p>
+
+  <input type="submit" value="<%= btn %>" style="width:100px">
+</form>

@@ -1,0 +1,13 @@
+<h2>Edit Band Information (<%= @band.name %>)</h2>
+
+<%= render 'band_info', request: 'patch', band: @band %>
+<p>
+  <form action=<%= band_url(@band) %> method="post">
+    <%= auth_input %>
+    <%= request_input('delete') %>
+    <input type="submit" value="Delete Band">
+  </form>
+</p>
+<p>
+  <%= link_to "Back to #{@band.name}", band_url(@band) %>
+</p>

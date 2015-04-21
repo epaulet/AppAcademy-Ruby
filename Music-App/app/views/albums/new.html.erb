@@ -1,0 +1,5 @@
+<h2>Post a new album for <%= @album.band.name %>!</h2>
+
+<%= render 'album_form', request: 'post', album: @album %>
+<br>
+<%= link_to "Back to #{@album.band.name}", band_url(@album.band) %>

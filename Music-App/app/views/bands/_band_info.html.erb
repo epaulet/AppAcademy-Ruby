@@ -1,0 +1,21 @@
+<% if band.persisted? %>
+  <% url = band_url(band) %>
+  <% btn_text = 'Edit Band' %>
+<% else %>
+  <% url = bands_url %>
+  <% btn_text = 'Post Band' %>
+<% end %>
+
+<p>
+  <form action=<%= url %> method="post">
+    <%= auth_input %>
+    <% if %w(patch put delete).include?(request) %>
+      <%= request_input(request) %>
+    <% end %>
+    <label><strong>Band Name:</strong><br>
+      <input type="text" name="band[name]" value='<%= band.name %>'>
+      <br>
+      <input type="submit" value='<%= btn_text %>'>
+    </label>
+  </form>
+</p>

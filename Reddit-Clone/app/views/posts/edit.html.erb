@@ -1,0 +1,29 @@
+<h3>Edit post!</h3>
+<form action="<%= post_url(@post) %>" method="post">
+  <%= auth_input %>
+  <%= request_input("patch") %>
+
+  <label for="post_title">Title</label>
+  <input id="post_title" type="text" name="post[title]" value="<%= @post.title %>"><br/>
+
+  <label for="post_url">link url</label>
+  <input id="post_url" type="text" name="post[url]" value="<%= @post.url %>"><br/>
+
+  <label for="post_content">Text</label><br/>
+  <textarea name="post[content]" id="post_content"><%= @post.content %></textarea><br/>
+
+  <input type="hidden" name="post[author_id]" value="<%= current_user.id %>">
+
+  <input type="hidden" name="post[sub_ids][]" value="">
+  <% @subs.each do |sub| %>
+    <label>
+      <input type="checkbox"
+      name="post[sub_ids][]"
+      value="<%= sub.id %>"
+      <%= "checked" if @post.sub_ids.include?(sub.id) %> >
+      <%= sub.title %>
+    </label><br/>
+  <% end %>
+
+  <input type="submit" value="Edit post">
+</form>

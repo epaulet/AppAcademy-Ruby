@@ -1,0 +1,31 @@
+<% if album.persisted? %>
+  <% url = album_url(album) %>
+  <% btn_text = 'Edit Album' %>
+<% else %>
+  <% url = albums_url %>
+  <% btn_text = 'Post Album' %>
+<% end %>
+
+<p>
+  <form action=<%= url %> method="post">
+    <%= auth_input %>
+    <% if %w(patch put delete).include?(request) %>
+      <%= request_input(request) %>
+    <% elsif request == 'post' %>
+      <input type="hidden" name="album[band_id]" value='<%= album.band_id %>'>
+    <% end %>
+    <label><strong>Album Title</strong><br>
+      <input type="text" name="album[title]" value='<%= album.title %>'>
+    </label>
+    <br>
+    <strong>Style</strong><br>
+    <label><input type="radio" name="album[live]" value="false"
+      <%= 'checked' unless album.live %>>Studio Album</label>
+    <br>
+    <label><input type="radio" name="album[live]" value="true"
+      <%= 'checked' if album.live %>>Live Album</label>
+    <br>
+    <br>
+    <input type="submit" value="<%= btn_text %>">
+  </form>
+</p>

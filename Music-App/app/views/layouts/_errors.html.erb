@@ -1,0 +1,11 @@
+<% if flash[:errors].is_a?(Array) %>
+  <p>
+    <% flash[:errors].each do |error| %>
+      <%= error %><br>
+    <% end %>
+  </p>
+<% else %>
+  <p>
+    <%= flash[:errors] %>
+  </p>
+<% end %>

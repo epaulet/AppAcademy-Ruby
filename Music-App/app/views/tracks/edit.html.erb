@@ -1,0 +1,14 @@
+<h2>Edit Track Information (<%= @track.name %>)</h2>
+
+<%= render 'track_form', request: 'patch', track: @track %>
+
+<p>
+  <form action=<%= track_url(@track) %> method="post">
+    <%= auth_input %>
+    <%= request_input('delete') %>
+    <input type="submit" value="Delete Track">
+  </form>
+</p>
+<p>
+  <%= link_to "Back to #{@track.name}", track_url(@track) %>
+</p>

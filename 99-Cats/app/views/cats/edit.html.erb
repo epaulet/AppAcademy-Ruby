@@ -1,0 +1,10 @@
+<%= render partial: "form", locals: { url: cat_url(@cat), btn: "Edit Cat" } %>
+
+<br>
+
+<form action=<%= cat_url(@cat) %> method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <input type="submit" value="Delete Cat" style="width:100px">
+</form>

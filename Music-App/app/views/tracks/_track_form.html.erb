@@ -1,0 +1,36 @@
+<% if track.persisted? %>
+  <% url = track_url(track) %>
+  <% btn_text = 'Edit Track' %>
+<% else %>
+  <% url = tracks_url %>
+  <% btn_text = 'Post Track' %>
+<% end %>
+
+<p>
+  <form action=<%= url %> method="post">
+    <%= auth_input %>
+    <% if %w(patch put delete).include?(request) %>
+      <%= request_input(request) %>
+    <% elsif request == 'post' %>
+      <input type="hidden" name="track[album_id]" value=<%= track.album.id %>>
+    <% end %>
+    <label><strong>Track Name:</strong><br>
+      <input type="text" name="track[name]" value='<%= track.name %>'>
+    </label>
+    <br>
+    <strong>Bonus Track?</strong>
+    <br>
+    <label><input type="radio" name="track[bonus]" value="true"
+      <%= track.bonus ? 'checked' : '' %>>Yes</label>
+    <br>
+    <label><input type="radio" name="track[bonus]" value="false"
+      <%= track.bonus ? '' : 'checked' %>>No</label>
+    <br>
+    <label><strong>Lyrics (Optional)</strong><br>
+      <textarea name="track[lyrics]" rows="8" cols="40"><%= track.lyrics %>
+      </textarea>
+    </label>
+    <br>
+    <input type="submit" value="<%= btn_text %>">
+  </form>
+</p>

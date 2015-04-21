@@ -1,0 +1,9 @@
+<h3>Add a comment under Post: <%= @comment.post.title %>!</h3>
+<form action="<%= comments_url %>" method="post">
+  <%= auth_input %>
+  <textarea name="comment[content]"><%= @comment.content %></textarea><br>
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post.id %>">
+
+  <input type="submit" value="Post Comment">
+</form>
+<%= button_to "Back to Post", post_url(@comment.post), method: :get %>

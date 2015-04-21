@@ -1,0 +1,31 @@
+<strong><%= @post.title %></strong><br>
+<%= @post.author.username %>
+
+<p>
+  <strong>URL: </strong><%= @post.url %><br>
+  <div style="width:450px">
+    <%= @post.content %>
+  </div>
+</p>
+
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= link_to comment.content, comment_url(comment) %>
+    <br>Posted by: <%= comment.author.username %></li>
+  <% end %>
+</ul>
+
+<p>
+  Subs for this post<br/>
+  <% @post.subs.each do |sub| %>
+    <%= link_to "#{sub.title}", sub_url(sub) %>
+  <% end %>
+</p>
+
+<p>
+  <%= button_to "Edit", edit_post_url(@post), method: :get %>
+  <form action="<%= new_comment_url %>" method="get">
+    <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
+    <input type="submit" value="Comment on this Post">
+  </form>
+</p>

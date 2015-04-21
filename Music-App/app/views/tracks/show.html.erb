@@ -1,0 +1,19 @@
+<p>
+  <strong>Track Name: </strong><%= @track.name %>
+  <br>
+  <strong>Album: </strong>
+    <%= link_to @track.album.title, album_url(@track.album) %>
+  <br>
+  <strong>Bonus Track?: </strong><%= @track.bonus ? 'Yes' : 'No' %>
+  <br>
+  <strong>Lyrics :</strong><br>
+  <div style="width:500px"><%= @track.lyrics %></div>
+</p>
+
+<%= render 'notes', track: @track %>
+
+<p>
+  <%= link_to "Edit Track Information", edit_track_url(@track) %>
+</p>
+
+<%= link_to "Back to #{@track.album.title}", album_url(@track.album) %>

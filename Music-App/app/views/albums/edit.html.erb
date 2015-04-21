@@ -1,0 +1,14 @@
+<h2>Edit Album Information (<%= @album.title %>)</h2>
+
+<%= render 'album_form', request: 'patch', album: @album %>
+
+<p>
+  <form action=<%= album_url(@album) %> method="post">
+    <%= auth_input %>
+    <%= request_input('delete') %>
+    <input type="submit" value="Delete Album">
+  </form>
+</p>
+<p>
+  <%= link_to "Back to #{@album.title}", album_url(@album) %>
+</p>

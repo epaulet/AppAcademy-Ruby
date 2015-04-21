@@ -1,0 +1,22 @@
+<p>
+  <strong>Band Name: </strong><%= @band.name %>
+</p>
+
+<p>
+  <strong>Albums: </strong><br>
+  <ul>
+    <% @band.albums.each do |album| %>
+      <li>
+        <%= link_to album.title, album_url(album) %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <%= link_to "Edit Band Information", edit_band_url(@band) %>
+  <br>
+  <%= link_to "Add an Album", new_band_album_url(@band) %>
+</p>
+
+<%= link_to "Back to Band List", bands_url %>

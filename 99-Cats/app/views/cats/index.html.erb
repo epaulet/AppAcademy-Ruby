@@ -1,0 +1,5 @@
+<% @cats.each do |cat| %>
+  <%= link_to "#{cat.name}", cat_url(cat) %><br>
+<% end %>
+<br><br>
+<%= link_to "Submit a New Cat!", new_cat_url %>

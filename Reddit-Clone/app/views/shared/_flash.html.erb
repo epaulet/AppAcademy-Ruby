@@ -1,0 +1,19 @@
+<ul>
+  <% if flash[:notice].is_a?(Array) %>
+    <% flash[:notice].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <% else %>
+    <%= flash[:notice] %>
+  <% end %>
+</ul>
+
+<ul>
+  <% if flash[:errors].is_a?(Array) %>
+    <% flash[:errors].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <% else %>
+    <%= flash[:errors] %>
+  <% end %>
+</ul>

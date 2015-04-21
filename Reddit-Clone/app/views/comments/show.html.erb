@@ -1,0 +1,16 @@
+<h5>Comment:</h3>
+
+<p>
+  <%= @comment.content %><br><br>
+  &nbsp&nbsp&nbsp&nbspPosted by: <%= @comment.author.username %>
+</p>
+
+<ul>
+  <% @comment.child_comments.each do |child| %>
+    <li>
+      <%= child.content %> - <%= child.author.username %>
+    </li>
+  <% end %>
+</ul>
+
+<%= button_to "Back to Post", post_url(@comment.post), method: :get %>
